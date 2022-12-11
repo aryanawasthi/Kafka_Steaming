@@ -1,0 +1,33 @@
+#Zookeeper  -Start the Zookeeper
+
+bin/zookeeper-server-start.sh config/zookeeper.properties
+
+
+
+# Kafka Start the Kafka-server by going inside the kafka properties
+
+bin/kafka-server-start.sh config/server.properties
+
+
+# create  a topic in kafka which is similar to database with a replication factor of 1 
+
+bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic mytopic
+
+bin/kafka-topics.sh --list --zookeeper localhost:2181
+
+
+
+#Producer Start a kafka producer to consume the data on the port 9092
+
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic mytopic
+
+
+
+# Consumer -- Start the Kafka-Consumer  to consume the data from producer
+
+bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic mytopic --from-beginning
+
+or
+
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092  --topic mytopic --from-beginning
+
