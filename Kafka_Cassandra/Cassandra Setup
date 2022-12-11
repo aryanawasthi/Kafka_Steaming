@@ -1,0 +1,17 @@
+# Starting the cassandra 
+bin/cassandra -f 
+
+
+# creating a keyspace which is similar to a database in SQL
+
+create keyspace sparkdata with replication ={'class':'SimpleStrategy','replication_factor':1};
+
+
+# setting the keyspace
+use sparkdata;
+
+
+# creating a table with the requrired schema
+CREATE TABLE cust_data (fname text , lname text , url text,product text , cnt counter ,primary key (fname,lname,url,product));
+# checking that whether the data is entered or not
+select * from cust_data;
